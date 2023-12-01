@@ -47,9 +47,7 @@ for(i in seq_along(example2)){
     num_name <- names(named_nums)[j]
     
     example2[i] <- gsub(num_name,
-                        paste0(num_name, 
-                               named_nums[j], 
-                               substr(num_name, nchar(num_name), nchar(num_name))),
+                        paste0(num_name, named_nums[j], num_name),
                         example2[i])
   }
    
