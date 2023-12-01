@@ -1,20 +1,6 @@
 
 # Part 1
 
-example <- c(
-  "g4ffwaaw5tt",
-  "1dfaewfaweaw9",
-  "sfwq9WqW",
-  "4534353523sger6"
-)
-
-example <- c(
-  "1abc2",
-  "pqr3stu8vwx",
-  "a1b2c3d4e5f",
-  "treb7uchet"
-)
-
 example <- readLines("day1_puzzle.txt")
 
 find_sum <- function(lines){
