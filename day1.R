@@ -1,4 +1,6 @@
 
+# Part 1
+
 example <- c(
   "g4ffwaaw5tt",
   "1dfaewfaweaw9",
@@ -13,13 +15,45 @@ example <- c(
   "treb7uchet"
 )
 
-chars <- strsplit(example, split = "")
+example <- readLines("day1_puzzle.txt")
 
-nums <- lapply(chars, \(charvec) charvec[charvec %in% as.character(0:9)])
+find_sum <- function(lines){
+  
+  chars <- strsplit(lines, split = "")
+  
+  nums <- lapply(chars, \(charvec) charvec[charvec %in% as.character(0:9)])
+  
+  comb_nums <- lapply(nums, \(numvec) paste0(numvec[1], numvec[length(numvec)]))
+  
+  comb_nums |> 
+    unlist() |> 
+    as.integer() |>
+    sum()
+  
+}
 
-comb_nums <- lapply(nums, \(numvec) paste0(numvec[1], numvec[length(numvec)]))
+find_sum(example)
 
-comb_nums |> 
-  unlist() |> 
-  as.integer() |> 
-  sum()
+
+# Part 2
+
+example2 <- example
+named_nums <- as.character(1:9)
+names(named_nums) <- c("one","two","three","four","five","six","seven","eight","nine")
+
+for(i in seq_along(example2)){
+  
+  for(j in 1:9){
+    num_name <- names(named_nums)[j]
+    
+    example2[i] <- gsub(names(named_nums)[j],
+                        paste0(num_name, 
+                               named_nums[j], 
+                               substr(num_name, nchar(num_name), nchar(num_name))),
+                        example2[i])
+  }
+   
+}  
+
+find_sum(example2)
+  
