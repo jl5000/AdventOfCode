@@ -10,7 +10,7 @@ inp <- readLines("puzzle_input.txt")
 df <- tibble(input = inp) |> 
   separate_wider_delim(input, ":", names = c("game","balls")) |> 
   separate_longer_delim(balls, ";") |> 
-  mutate(game = str_remove(game, "Game"),
+  mutate(game = str_remove(game, "Game "),
          game = as.integer(game)) |>
   mutate(num_green = str_extract(balls, "(\\d+) green", group = 1),
          num_blue = str_extract(balls, "(\\d+) blue", group = 1),
