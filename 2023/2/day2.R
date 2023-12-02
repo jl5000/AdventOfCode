@@ -18,7 +18,7 @@ df <- tibble(input = inp) |>
   mutate(across(starts_with("num_"), as.integer)) |> 
   replace_na(list(num_green = 0, num_red = 0, num_blue = 0))
 
-part1_df <- df
+part1_df <- df |> 
   group_by(game) |> 
   filter(all(num_green <= 13), all(num_red <= 12), all(num_blue <= 14)) |> 
   ungroup()
