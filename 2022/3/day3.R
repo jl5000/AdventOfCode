@@ -23,5 +23,12 @@ sum(df$priority)
 # Part 2
 
 df <- tibble(inp) |> 
-  mutate(grp = cumsum((row_number()-1) %% 3 == 0))
+  mutate(grp = cumsum((row_number()-1) %% 3 == 0)) |> 
+  mutate(ltrs = map(inp, \(str) unlist(strsplit(str, split = "")))) |> 
+  group_by(grp) |> 
+  mutate(common = Reduce(intersect, ltrs)) |> 
+  ungroup() |> 
+  distinct(grp, common)|> 
+  mutate(priority = map_int(common, \(ltr) which(priorities == ltr)))
 
+sum(df$priority)
