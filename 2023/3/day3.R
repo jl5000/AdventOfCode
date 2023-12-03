@@ -21,7 +21,7 @@ cell_is_part <- function(mat, row, col){
         if(j > 0 && j <= ncol(mat)){ 
           if(!mat[i, j] %in% c(as.character(0:9), "."))
             return(TRUE)
-          }
+        }
       }
     }
   }
